@@ -1,7 +1,8 @@
 
 var population = 1000000;
 var testGroup = []; // a variable to hold my fake population of numbers
-var groups = 1000;
+var groups = 1000; // note that the more groups you have, the more accumulated error you get!
+// TODO: add the accumulated +/- error for a given chart
 
 // stuffing an array with numbers, just mvp of using the flotr library
 // this algorithm of generation of numbers is simply using Math.random
@@ -13,6 +14,9 @@ for (var i = 0; i < population; i++) {
 // return array of [ barIndex, qty ] where the barIndex is the 
 // value of the sub population by bracket, and the qty, the number of 
 // members that are in that population.
+
+// checkout https://stackoverflow.com/questions/8435183/generate-a-weighted-random-number
+
 function makeRangedChartArrayBar(population, number) {
     // don't mess with the original array, map it, then sort it to new variable
     var sortedPop = population.map((elem)=>elem).sort((a, b)=>a - b);
@@ -48,7 +52,7 @@ window.onload = function drawChart() {
             title: 'Distribution of population of ' + testGroup.length + ' numbers into ' + groups + ' groups',
             bars: {
                 show: true,
-                barWidth: 0.5,
+                barWidth: 1.0,
                 shadowSize: 0,
                 fillOpacity: 1.0,
                 lineWidth: 0
